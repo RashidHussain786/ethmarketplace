@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from 'react'
 import Modal from '../Common/Modal'
 import Button from '../Common/Button'

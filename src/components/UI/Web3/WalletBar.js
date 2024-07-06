@@ -1,13 +1,15 @@
 
+import { useWalletInfo } from '@/components/Hooks/web3Hooks';
 import { useWeb3 } from '@/components/Providers/web3Provider';
 import React from 'react'
 
-const WalletBar = ({ address, network }) => {
+const WalletBar = () => {
   const { isLoading,web3 } = useWeb3();
+  const {account, network} = useWalletInfo();
   return (
     <section className="text-white bg-cyan-600">
       <div className="p-8">
-        <h1 className="text-2xl">Hello, {address}</h1>
+        <h1 className="text-2xl">Hello, {account.data}</h1>
         <h2 className="subtitle mb-5 text-xl">I hope you are having a great day!</h2>
         <div className="flex justify-between items-center">
           <div className="sm:flex sm:justify-center lg:justify-start">
@@ -34,7 +36,7 @@ const WalletBar = ({ address, network }) => {
                 </div>
               </div>
             }
-            {address && network.data &&
+            {account.data && network.data &&
               <div><span>Currently on </span>
                 <strong className="text-2xl">{network.data?.toString()}</strong>
               </div>}

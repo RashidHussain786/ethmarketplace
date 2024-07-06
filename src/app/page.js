@@ -1,21 +1,33 @@
+"use client";
+
 import Breadcrumbs from "@/components/UI/Common/Breadcrumbs";
 import Hero from "@/components/UI/Common/Hero";
 import CourseCard from "@/components/UI/Course/CourseCard";
 import CourseList from "@/components/UI/Course/CourseList";
 import OrderCard from "@/components/UI/Order/OrderCard";
 import EthRates from "@/components/UI/Web3/EthRates";
-import WalletBar from "@/components/UI/Web3/WalletBar";
 import { getAllCourses } from "@/content/cources/fetcher";
-import Image from "next/image";
+
+export const LINKS = [{
+  href: "/marketplace",
+  value: "Buy"
+}, {
+  href: "/marketplace/owned",
+  value: "My Courses"
+}, {
+  href: "/marketplace/managed",
+  value: "Manage Courses"
+}]
 
 export default function Home() {
   const { data: courses } = getAllCourses();
   return (
     <>
       <Hero />
-      <Breadcrumbs />
-      {/* <WalletBar /> */}
-      <EthRates />
+      <EthRates/>
+      <div className='flex flex-row-reverse py-6 px-4 sm:px-6 lg:px-6'>
+      <Breadcrumbs items ={LINKS}/>
+      </div>
       <OrderCard />
       <CourseList courses={courses}>
         {course => <CourseCard key={course.id} course={course}/>}
