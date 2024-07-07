@@ -9,11 +9,15 @@ import OrderModal from '@/components/UI/Order/OrderModal';
 import { getAllCourses } from '@/content/cources/fetcher';
 import React, { useState } from 'react'
 
+
 const page = () => {
   const { data: courses } = getAllCourses();
   const [selectedCourse, setSelectedCourse] = useState(null);
   const {canPurchaseCourse} = useWalletInfo();
- 
+
+  const purchaseCourse = (order) => {
+    alert(JSON.stringify(order))
+  }
 
   return (
     <>
@@ -36,7 +40,11 @@ const page = () => {
           />}
       </CourseList>
 
-      <OrderModal course = {selectedCourse} onClose={()=> setSelectedCourse(null)}/>
+      <OrderModal 
+        course = {selectedCourse} 
+        onSubmit={purchaseCourse} 
+        onClose={()=> setSelectedCourse(null)}
+      />
     </>
   )
 }
